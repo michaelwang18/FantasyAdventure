@@ -6,7 +6,9 @@ public class Equipment extends Item {
     private int defense;
     private int health;
 
-    public Equipment(String name, String symbol, int value, int attack, int defense, int health) {
+    private int speed;
+
+    public Equipment(String name, String symbol, int value, int attack, int defense, int health, int speed) {
         super(name, symbol, value);
         this.attack = attack;
         this.defense = defense;

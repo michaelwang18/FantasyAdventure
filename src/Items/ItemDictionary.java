@@ -11,6 +11,7 @@ public class ItemDictionary {
             int count = 1;
             File myFile = new File("src//itemList.csv");
             Scanner fileScanner = new Scanner(myFile);
+            fileScanner.nextLine(); //Skips first line
             while (fileScanner.hasNext()) {
                 String data = fileScanner.nextLine();
                 String[] splitData = data.split(",");
@@ -22,8 +23,9 @@ public class ItemDictionary {
                     int attack = Integer.parseInt(splitData[3]);
                     int defense = Integer.parseInt(splitData[4]);
                     int health = Integer.parseInt(splitData[5]);
+                    int speed = Integer.parseInt(splitData[6]);
 
-                     item = new Equipment(name,symbol,value,attack,defense,health);
+                     item = new Equipment(name,symbol,value,attack,defense,health,speed);
                 } else {
                      item = new Material(name, symbol,value);
                 }
