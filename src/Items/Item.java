@@ -1,6 +1,7 @@
 public class Item {
     private String name;
     private String symbol;
+    private int owned;
 
     private int value;
 
@@ -8,6 +9,7 @@ public class Item {
         this.name = name;
         this.symbol = symbol;
         this.value = value;
+        owned = 0;
     }
 
     public String getName() {
@@ -22,4 +24,11 @@ public class Item {
         return value;
     }
 
+    public int getOwned() {
+        return owned;
+    }
+
+    public void setOwned(int owned) {
+        this.owned = owned;
+    }
 }

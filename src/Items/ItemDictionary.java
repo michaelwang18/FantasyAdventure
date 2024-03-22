@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class ItemDictionary {
-    Dictionary<Integer, Item> allItems;
+    Dictionary<String, Item> allItems;
 
     public ItemDictionary(){
         allItems = new Hashtable<>();
@@ -11,7 +11,7 @@ public class ItemDictionary {
             int count = 1;
             File myFile = new File("src//itemList.csv");
             Scanner fileScanner = new Scanner(myFile);
-            fileScanner.nextLine(); //Skips first line
+            //fileScanner.nextLine(); //Skips first line
             while (fileScanner.hasNext()) {
                 String data = fileScanner.nextLine();
                 String[] splitData = data.split(",");
@@ -30,7 +30,7 @@ public class ItemDictionary {
                      item = new Material(name, symbol,value);
                 }
 
-                allItems.put(1,item);
+                allItems.put(name,item);
                 //System.out.println(item.getSymbol() + " " + item.getName() + ": " + item.getValue());
             }
         } catch (IOException exception) {
@@ -40,7 +40,9 @@ public class ItemDictionary {
 
     }
 
-    public Dictionary<Integer, Item> getAllItems() {
+    public Dictionary<String, Item> getAllItems() {
         return allItems;
     }
+
+
 }
