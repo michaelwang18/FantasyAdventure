@@ -2,18 +2,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-public class ItemDictionary {
-    Dictionary<String, Item> allItems;
+public class Inventory {
+    Dictionary<Integer, Item> allItems;
 
-    public ItemDictionary(){
+    public Inventory(){
         allItems = new Hashtable<>();
         try {
-            int count = 1;
+            int count = 0;
             File myFile = new File("src//itemList.csv");
             Scanner fileScanner = new Scanner(myFile);
             //fileScanner.nextLine(); //Skips first line
             while (fileScanner.hasNext()) {
                 String data = fileScanner.nextLine();
+                count++;
                 String[] splitData = data.split(",");
                 String name = splitData[0];
                 int value = Integer.parseInt(splitData[2]);
@@ -30,7 +31,7 @@ public class ItemDictionary {
                      item = new Material(name, symbol,value);
                 }
 
-                allItems.put(name,item);
+                allItems.put(count,item);
                 //System.out.println(item.getSymbol() + " " + item.getName() + ": " + item.getValue());
             }
         } catch (IOException exception) {
@@ -40,8 +41,24 @@ public class ItemDictionary {
 
     }
 
-    public Dictionary<String, Item> getAllItems() {
+    public Dictionary<Integer, Item> getAllItems() {
         return allItems;
+    }
+
+    public void viewOwned(String select){
+        if (select.toLowerCase().equals("equipment")){
+            for (int i = 1; i <= allItems.size(); i++){
+                Item item = allItems.get(i);
+                System.out.println("Equipment\n-----------------\n");
+                if (allItems.get(i).getOwned() > 0){
+                    System.out.println(item);
+                }
+
+            }
+        }
+
+
+
     }
 
 

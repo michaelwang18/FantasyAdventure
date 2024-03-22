@@ -31,4 +31,12 @@ public class Item {
     public void setOwned(int owned) {
         this.owned = owned;
     }
+
+    @Override
+    public String toString() {
+        return symbol+ " " + name + " Value: " + value;
+    }
+
+
+
 }

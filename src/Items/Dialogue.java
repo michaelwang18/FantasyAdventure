@@ -1,12 +1,14 @@
 import java.util.Scanner;
 
 public class Dialogue {
+    String name;
     String message;
     Object[] options;
 
+
     Scanner scan = new Scanner(System.in);
 
-    public Dialogue(String message, Object[] opt){
+    public Dialogue(String name, String message, Object[] opt){
         this.message = message;
         options = opt;
     }
@@ -18,6 +20,9 @@ public class Dialogue {
         if (options[value] instanceof String){System.out.println((String) options[value]);}
         if (options[value] instanceof Dialogue){((Dialogue) options[value]).start();}
         if (options[value] instanceof Shop){((Shop) options[value]).menu();}
+        //Fishing
+        //Battle
+
 
 
 

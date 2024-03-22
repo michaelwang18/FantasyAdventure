@@ -27,5 +27,13 @@ public class Equipment extends Item {
         return health;
     }
 
+    public int getSpeed() {
+        return speed;
+    }
 
+
+    @Override
+    public String toString() {
+        return super.toString() + "Attack: " + attack  + "Defense: " + defense  + "Health: " + health  + "Speed: " + speed ;
+    }
 }
