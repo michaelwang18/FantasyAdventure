@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Inventory {
     Dictionary<Integer, Item> allItems;
+    ArrayList<Consumable> Handbag = new ArrayList<>();
 
     public Inventory(){
         allItems = new Hashtable<>();
@@ -45,6 +46,8 @@ public class Inventory {
         return allItems;
     }
 
+    public ArrayList<Consumable> getHandbag() {return Handbag;}
+
     public void viewOwned(String select){
         if (select.toLowerCase().equals("equipment")){
             for (int i = 1; i <= allItems.size(); i++){
@@ -60,6 +63,8 @@ public class Inventory {
 
 
     }
+
+
 
 
 }

@@ -25,11 +25,11 @@ public class Utility {
         try {
             num = Integer.parseInt(input);
             if (num > max){
-                System.out.println( Color.RED + "Please Enter A Valid Input! " + Color.RESET);
+                System.out.println( Color.RED + "Please Enter A Valid Input! (Out of bounds)" + Color.RESET);
                 num = tryInput(scan.nextLine(), max);
             }
         } catch (Exception e){
-            System.out.println( Color.RED + "Please Enter A Valid Input! " + Color.RESET);
+            System.out.println( Color.RED + "Please Enter A Valid Input! (Not Integer)" + Color.RESET);
             num = tryInput(scan.nextLine(), max);
         }
         return num;

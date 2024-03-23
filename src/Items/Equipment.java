@@ -5,7 +5,6 @@ public class Equipment extends Item {
     private int attack;
     private int defense;
     private int health;
-
     private int speed;
 
     public Equipment(String name, String symbol, int value, int attack, int defense, int health, int speed) {
@@ -13,6 +12,7 @@ public class Equipment extends Item {
         this.attack = attack;
         this.defense = defense;
         this.health = health;
+        this.speed = speed;
     }
 
     public int getAttack() {
