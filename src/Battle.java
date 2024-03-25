@@ -6,6 +6,7 @@ public class Battle {
     Dictionary<Integer,String> actions;
     ArrayList<Consumable> handbag;
     MoveStack moveStack = new MoveStack();
+    MoveStack enemyStack = new MoveStack();
     Player player;
     int playerMaxHealth;
     int playerHealth;
@@ -175,9 +176,43 @@ public class Battle {
     }
 
 
+//////////// ENEMY SIDE
+
+
+    private void enemyMove(){
+        for (int bout = 0; bout < 3; bout++){
+            if (enemyEnergy >= 2){
+                if (Utility.chance(1,3)){
+                    enemyStack.push("critical");
+                } else {
+                    if (Utility.chance(1,2)){
+                        enemyStack.push("parry");
+                    } else {
+                        if (Utility.chance(1,2)){
+                            enemyStack.push("block");
+                        } else {
+                            enemyStack.push("attack");
+                        }
+                    }
+                }
+            } else if (enemyEnergy == 1){
+                if (Utility.chance(1,2)){
+                    enemyStack.push("attack");
+                } else {
+                    enemyStack.push("block");
+                }
+            } else {
+                enemyStack.push("block");
+            }
+
+        }
+
+
+    }
 
 
 
+///// DO THE BATTLE
 
 
 
