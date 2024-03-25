@@ -62,14 +62,18 @@ public class Battle {
 
         initializeStats();
         System.out.println("BATTLE START");
+        handbag.add(new Consumable("Potion Ahh","Potion",10,.70,.1,.1,.1)); //TESTING;
 
 
         for (int rounds = 1; playerHealth > 0 || enemyHealth > 0; rounds++){
             int usedEnergy = 0;
+
             System.out.println("ROUND " + rounds + "\n--------------------------------------------------------------------");
+            restoreEnergy();
+            moveStack.clear();
             for (int bout = 0; bout < 3; bout++){
                 int maxChoice = 5;
-                String options = "\n1) Basic Attack (1 Cost)\n2) Critical Attack (2 Cost)\n3) Block (0 Cost)\n4) Parry (1 Cost)\n5) Use Item)";
+                String options = "\n1) Basic Attack (1 Cost)\n2) Critical Attack (2 Cost)\n3) Block (0 Cost)\n4) Parry (1 Cost)\n5) Use Item";
                 if (!moveStack.isEmpty()){options += "\n6) UNDO"; maxChoice = 6;
                     System.out.println(moveStack);}
                     System.out.println("---------------------------------------------------------\nAction " + (bout + 1) + " of " + 3);
@@ -77,14 +81,22 @@ public class Battle {
                     System.out.println("What would you like to do?" + options);
                     int choice = Utility.tryInput(scan.nextLine(),maxChoice);
                     while (choice < 5 && playerEnergy < getCost(actions.get(choice))){
+                        if (playerEnergy < getCost(actions.get(choice))){
+                            System.out.println("Insufficent Energy, Try again");
+                        }
                          choice = Utility.tryInput(scan.nextLine(),maxChoice);
                     }
                     if (choice == 5){
-                        String res = chooseConsume();
-                        if (res.equals("undo")){
+                        if (handbag.isEmpty()){
+                            System.out.println("You got no Consumables left");
                             bout--;
                         } else {
-                            moveStack.push(res);
+                            String res = chooseConsume();
+                            if (res.equals("undo")){
+                                bout--;
+                            } else {
+                                moveStack.push(res);
+                            }
                         }
                     }
                     if (choice == 6){
@@ -98,7 +110,7 @@ public class Battle {
                             handbag.add(Consumable.decode(previous.substring(0,previous.length()-2)));
                         }
                     } else {
-                        moveStack.push(actions.get(choice));
+                        if (choice != 5){moveStack.push(actions.get(choice));}
                         playerEnergy -= getCost(actions.get(choice));
                         usedEnergy += getCost(actions.get(choice));
                     }
@@ -146,9 +158,9 @@ public class Battle {
                 System.out.println((i+1) + ") " + handbag.get(i));
             }
             System.out.println( handbag.size() + 1 + ") Decide not to use a potion");
-            int pickConsumable = Utility.tryInput(scan.nextLine(),handbag.size() + 1);
-            if ( pickConsumable != handbag.size() + 1){
-                consumable = handbag.get(1);
+            int pickConsumable = Utility.tryInput(scan.nextLine(),handbag.size() + 1) - 1;
+            if ( pickConsumable != handbag.size()){
+                consumable = handbag.get(pickConsumable);
                 System.out.println("Are you sure you want to use: " + consumable + "\n----------\n1)Yes\n2)No");
                 int decide = Utility.tryInput(scan.nextLine(),2);
                 if (decide == 1){picked = true; handbag.remove(pickConsumable);}

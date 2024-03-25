@@ -61,7 +61,10 @@ public class MoveStack {
         for (int i = 0; i < size(); i++){
             String action = internalList.get(i);
             if (internalList.get(i).contains(",")){
-                
+                String target = "Yourself";
+                String[] data = internalList.get(i).split(",");
+                if (data[7].equals("2") ){ target = "Enemy";}
+                action = "Use " + data[1] + "On " + target;
             } // Clearify what you do with potion
             resp += "\n " + (i + 1) + ") " + action;
         }
