@@ -13,10 +13,7 @@ public class MoveStack {
     //isEmpty() returns true if nothing is on the top of the stack.
     //Otherwise, returns false.
     public boolean isEmpty() {
-        if (internalList.size() == 0){
-            return true;
-        }
-        return false;
+        return internalList.isEmpty();
     }
 
 

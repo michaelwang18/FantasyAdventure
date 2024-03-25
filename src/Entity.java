@@ -1,4 +1,6 @@
 public class Entity {
+
+    String name;
     private int baseHealth;
     private int baseAttack;
     private int baseDefense;
@@ -9,6 +11,7 @@ public class Entity {
         baseAttack = attack;
         baseDefense = defense;
         baseSpeed = speed;
+        this.name = name;
     }
 
     public int getBaseAttack() {
@@ -41,5 +44,9 @@ public class Entity {
 
     public void setBaseSpeed(int baseSpeed) {
         this.baseSpeed = baseSpeed;
+    }
+
+    public String getName() {
+        return name;
     }
 }

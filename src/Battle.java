@@ -6,6 +6,7 @@ public class Battle {
     Dictionary<Integer,String> actions;
     ArrayList<Consumable> handbag;
     MoveStack moveStack = new MoveStack();
+    MoveStack enemyStack = new MoveStack();
     Player player;
     int playerMaxHealth;
     int playerHealth;
@@ -175,10 +176,94 @@ public class Battle {
     }
 
 
+//////////// ENEMY SIDE
+
+
+    private void enemyMove(){
+        for (int bout = 0; bout < 3; bout++){
+            if (enemyEnergy >= 2){
+                if (Utility.chance(1,3)){
+                    enemyStack.push("critical");
+                } else {
+                    if (Utility.chance(1,2)){
+                        enemyStack.push("parry");
+                    } else {
+                        if (Utility.chance(1,2)){
+                            enemyStack.push("block");
+                        } else {
+                            enemyStack.push("attack");
+                        }
+                    }
+                }
+            } else if (enemyEnergy == 1){
+                if (Utility.chance(1,2)){
+                    enemyStack.push("attack");
+                } else {
+                    enemyStack.push("block");
+                }
+            } else {
+                enemyStack.push("block");
+            }
+
+        }
+
+
+    }
 
 
 
+///// DO THE BATTLE
 
+    private void useStacks(){
+        for (int bout =  0; bout < 3; bout++){
+            String pMove = moveStack.pop();
+            String eMove = enemyStack.pop();
+            if (pMove.equals("attack")){ // YOUR ATTACK
+                if (eMove.equals("block")){System.out.println(enemy.getName() + " blocked your attack!");}
+                if (eMove.equals("attack")){
+                    if (playerSpeed >= enemySpeed){
+                        System.out.println("You hit the" + enemy.getName() + " for " + (damageCalc(enemyDefense,playerAttack)));
+                        if (enemyHealth > 0) {
+                            System.out.println(enemy.getName() + " hits you back for " + damageCalc(playerDefense,enemyAttack));
+                        }
+                    } else {
+                        System.out.println(enemy.getName() + " hits you for " + damageCalc(playerDefense,enemyAttack));
+                        if (playerHealth > 0){
+                            System.out.println("You hit the " + enemy.getName() + " back for " + (damageCalc(enemyDefense,playerAttack)));
+                        }
+                    }
+                    }
+                if (eMove.equals("parry")){System.out.println(enemy.getName() + " parried your attack!\nYou lose 1 energy"); playerEnergy--;}
+                if (eMove.equals("critical")){
+                    if (playerSpeed >= enemySpeed){
+                      System.out.println("You hit the" + enemy.getName() + " for " + (damageCalc(enemyDefense,playerAttack)));
+                    if (enemyHealth > 0) {
+                        System.out.println(enemy.getName() + " hits you back critically for " + damageCalc(playerDefense,enemyAttack * 3 / 2));
+                    }
+                } else {
+                    System.out.println(enemy.getName() + " hits you critically for " + damageCalc(playerDefense,enemyAttack * 2 / 3));
+                    if (playerHealth > 0){
+                        System.out.println("You hit the " + enemy.getName() + " back for " + (damageCalc(enemyDefense,playerAttack))); //MAYBE daze so you dont attack back
+                    }
+                }}
+            }
+
+
+        }
+
+
+    }
+
+
+    public static int damageCalc(int defense, int attack){
+        if (defense > attack){
+            return attack /20;
+        } else {
+            return defense - attack;
+        }
+
+
+    }
 
 
 
