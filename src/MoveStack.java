@@ -48,13 +48,16 @@ public class MoveStack {
         internalList = new ArrayList<String>();
     }
 
+    public ArrayList<String> getInternalList() {
+        return internalList;
+    }
 
     //toString() should return a String containing the name of each Webpage in the stack.
     //Each Webpage name should be on a new line and arranged such that
     //The top of the stack is the first line and the bottom of the stack is the last line.
     @Override
     public String toString() {
-        String resp = "\n Current: ";
+        String resp = "\nMOVES:";
         for (int i = 0; i < size(); i++){
             String action = internalList.get(i);
             if (internalList.get(i).contains(",")){
@@ -63,7 +66,7 @@ public class MoveStack {
                 if (data[7].equals("2") ){ target = "Enemy";}
                 action = "Use " + data[1] + "On " + target;
             } // Clearify what you do with potion
-            resp += "\n " + (i + 1) + ") " + action;
+            resp += " " + (i + 1) + ") " + action;
         }
         return resp;
     }

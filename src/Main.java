@@ -2,7 +2,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
         Inventory test = new Inventory();
-        Battle test1 = new Battle(new Player("Bobby",1,1,1,1,1),new Entity("rawr",1,1,1,1));
+        Battle test1 = new Battle(new Player("Bobby",150,35,20,40,1),new Entity("Gobby Boi",200,40,15,30));
         test1.start();
 
 
