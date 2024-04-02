@@ -2,17 +2,20 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
         Inventory test = new Inventory();
+        Player player =  new Player("Bobby",150,35,20,40,1);
         Battle test1 = new Battle(new Player("Bobby",150,35,20,40,1),new Entity("Gobby Boi",200,40,15,30));
         test1.start();
 
 
 
-
-        String[] InfoOptions = {"You can fish by talking to the Fisherman and he'll teach you the ropes", "You hunt by going into the woods and finding beasts to slay", "Talk to the old smithy, though hasn't been in the best mood these days"};
-        Object[] options = {new Dialogue("AA","You can do many things, which would you like to know more about? \n1) Fishing\n2) Hunting\n3) Crafting",InfoOptions), new Shop()};
-        Dialogue dude = new Dialogue("A","Welcome to Adventure GAME thingy, what would you like to do? " +
-                "\n1) How do I play the game?" +
-                "\n2) I'd like to sell and buy goods",options);
+        Object[] storeOptions = {};
+        Object[] battleOptions = {new Battle(player,EntityList.getGPMonster()),new Battle(player,EntityList.getSDMonster()),new Battle(player,EntityList.getBTMonster())};
+        Object[] options = {new Dialogue("TownHunt","Where would you like to hunt!\n1) Great Plains \n2) Scorching Desert\n3) Bleak Tundras",battleOptions),
+                new Dialogue("Shop","What store would you like to visit?\n1) General Store\n2) Apothecary\n3) Blacksmith",storeOptions)}; //Add Fishing when richards done
+        Dialogue dude = new Dialogue("TownStart","Your in town, what would you like to do? " +
+                "\n1) Go Hunt" +
+                "\n2) Visit Stores" +
+                "\n3) Go Fish",options);
 
         dude.start();
 

@@ -3,8 +3,9 @@ import java.util.ArrayList;
 public class Player extends Entity{
     int coins;
     int progression;
-    Equipment armour;
-    ArrayList<Consumable> Handbag = new ArrayList<>();
+    private Equipment armour;
+    private ArrayList<Consumable> Handbag = new ArrayList<>();
+    private Inventory bag = new Inventory();
     boolean alive;
 
 
@@ -36,6 +37,10 @@ public class Player extends Entity{
 
     public void setAlive(boolean alive) {
         this.alive = alive;
+    }
+
+    public Inventory getBag() {
+        return bag;
     }
 
     public ArrayList<Consumable> getHandbag() {

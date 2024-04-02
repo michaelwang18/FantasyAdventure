@@ -3,8 +3,8 @@ import java.io.IOException;
 import java.util.*;
 
 public class Inventory {
-    Dictionary<Integer, Item> allItems;
-    ArrayList<Consumable> Handbag = new ArrayList<>();
+    private Dictionary<Integer, Item> allItems;
+    private ArrayList<Consumable> Handbag = new ArrayList<>();
 
     public Inventory(){
         allItems = new Hashtable<>();
@@ -42,8 +42,19 @@ public class Inventory {
 
     }
 
+    public int getAmount(int id){
+        return allItems.get(id).getOwned();
+    }
+    public void add(int id, int amount){
+        allItems.get(id).setOwned(getAmount(id) + amount);
+    }
+    
     public Dictionary<Integer, Item> getAllItems() {
         return allItems;
+    }
+
+    public Item getItem(int idx){
+        return allItems.get(idx);
     }
 
     public ArrayList<Consumable> getHandbag() {return Handbag;}
