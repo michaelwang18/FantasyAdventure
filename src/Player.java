@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Dictionary;
 
 public class Player extends Entity{
     int coins;
@@ -39,8 +40,8 @@ public class Player extends Entity{
         this.alive = alive;
     }
 
-    public Inventory getBag() {
-        return bag;
+    public Dictionary<Integer,Item> getBag() {
+        return bag.getAllItems();
     }
 
     public ArrayList<Consumable> getHandbag() {

@@ -1,13 +1,15 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
+
 public class Shop {
     Scanner scan = new Scanner(System.in);
     ArrayList<String> materials = new ArrayList<>();
     ArrayList<String> consumables = new ArrayList<>();
 
-    ArrayList<String> inventory = new ArrayList<>();
+    ArrayList<Consumable> potions = new ArrayList<>();
+    Player p1;
 
-    public Shop() {
+    public Shop(Player p1) {
+        this.p1 = p1;
         //menu();
     }
 
@@ -28,42 +30,46 @@ public class Shop {
         }
     }
 
-    public void buy() {
-        System.out.print("We have two sections of items. Which section do you wish to enter?\n(C)onsumable\n(M)aterials");
-        String option = scan.nextLine().toLowerCase();
+    public void buy() { //selling potions with stats at max of .25
 
-        if (option.equals("c")) {
-            for (int i = 0; i  < consumables.size(); i++) {
-                System.out.println((i + 1) + ". " + consumables.get(i));
-            }
-            System.out.print("What do you wish to buy? They're tasty and they do their job. What else could you ask for.(Choose by entering the number in front of the item) :");
-            int choice = scan.nextInt();
-            choice--;
-            scan.nextLine();
-        } else if (option.equals("m")) {
-            for (int i = 0; i < consumables.size(); i++) {
-                System.out.println((i + 1) + ". " + consumables.get(i));
-            }
-            System.out.print("What do you wish to buy? Only the best available at my store.(Choose by entering the number in front of the item) :");
-            int choice = scan.nextInt();
-            choice--;
-            scan.nextLine();
-        }
+        System.out.print("What do you wish to buy? They're tasty and they do their job. What else could you ask for.(Choose by entering the number in front of the item) :");
+        int choice = scan.nextInt();
+        choice--;
+        scan.nextLine();
         System.out.println("This isn't even one of the options. You sure you should be traveling the road? I think it's time to head back home.");
     }
 
     public void sell() {
         System.out.print("What do you wish to sell?");
-        if (inventory.size() == 0) {
-            System.out.println("You don't even have anything to sell. What you trying to pull?!");
-        } else {
-            for (int i = 0; i < inventory.size(); i++) {
-                System.out.println((i + 1) + ". " + inventory.get(i));
+        Dictionary<Integer, Item> allItems = p1.getBag();
+        boolean hasSell = false;
+        Dictionary<Integer, Item> itemsOwned = new Hashtable<>();
+        int count = 1;
+        for (int i = 0; i < allItems.size(); i++) {
+            if (!(allItems.get(i).getOwned() <= 0)) {
+                //print the amount owned and how much to sell for
+                itemsOwned.put(count, allItems.get(i));
+                count++;
+                hasSell = true;
             }
-            System.out.println("What you selling.(Enter an number to choose what to sell)");
-            int choice = scan.nextInt();
-            choice--;
-            scan.nextLine();
         }
+        if (hasSell){
+            for(int i = 1; i <= itemsOwned.size(); i++){
+                System.out.println(i+") " + itemsOwned.get(i));
+            }
+            System.out.println("What would you like to sell?");
+            int choice = Utility.tryInput(scan.nextLine(),itemsOwned.size());
+            boolean confirm = false;
+            while (!confirm) {
+                System.out.println("How many would you like to sell? (0 - " + itemsOwned.get(choice).getOwned() + ")" );
+                int sellCount = Utility.tryInput(scan.nextLine(),itemsOwned.get(choice).getOwned());
+                System.out.println("Are you sure you want to sell " + sellCount + " " + itemsOwned.get(choice).getName() + " for " + (itemsOwned.get(choice).getValue() * sellCount) + " coins?");
+            }
+
+        } else {
+            System.out.println("You don't got things to sell");
+        }
+
+
     }
 }
