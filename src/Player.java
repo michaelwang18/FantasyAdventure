@@ -40,8 +40,8 @@ public class Player extends Entity{
         this.alive = alive;
     }
 
-    public Dictionary<Integer,Item> getBag() {
-        return bag.getAllItems();
+    public Inventory getBag() {
+        return bag;
     }
 
     public ArrayList<Consumable> getHandbag() {

@@ -23,7 +23,7 @@ public class Monster extends Entity{
     public void getDrops(Player player,int numLoot){
         for (int i = 0; i < numLoot; i++){
             int itemIdx = drops[ (int) (Math.random()*drops.length)];
-            Item item = player.getBag().get(itemIdx);
+            Item item = player.getBag().getItem(itemIdx);
             item.setOwned(item.getOwned()+1);
             System.out.println("You got a " + item.getName() + " (Owned: " + item.getOwned() + ")");
         }

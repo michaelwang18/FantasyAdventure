@@ -41,35 +41,36 @@ public class Shop {
 
     public void sell() {
         System.out.print("What do you wish to sell?");
-        Dictionary<Integer, Item> allItems = p1.getBag();
+        Inventory bag = p1.getBag();
+        boolean confirm = false;
         boolean hasSell = false;
         Dictionary<Integer, Item> itemsOwned = new Hashtable<>();
         int count = 1;
-        for (int i = 0; i < allItems.size(); i++) {
-            if (!(allItems.get(i).getOwned() <= 0)) {
+        for (int i = 0; i < bag.getAllItems().size();i++) {
+            if (!(bag.getItem(i).getOwned() <= 0)) {
                 //print the amount owned and how much to sell for
-                itemsOwned.put(count, allItems.get(i));
+                itemsOwned.put(count, bag.getItem(i));
                 count++;
                 hasSell = true;
             }
         }
         if (hasSell){
-            for(int i = 1; i <= itemsOwned.size(); i++){
-                System.out.println(i+") " + itemsOwned.get(i));
+            while(!confirm) {
+                for (int i = 1; i <= itemsOwned.size(); i++) {
+                    System.out.println(i + ") " + itemsOwned.get(i));
+                }
+                System.out.println("What would you like to sell?");
+                int choice = Utility.tryInput(scan.nextLine(), itemsOwned.size());
+                System.out.println("How many would you like to sell? (0 - " + itemsOwned.get(choice).getOwned() + ")");
+                int sellCount = Utility.tryInput(scan.nextLine(), itemsOwned.get(choice).getOwned());
+                System.out.println("Are you sure you want to sell " + sellCount + " " + itemsOwned.get(choice).getName() + " for " + (itemsOwned.get(choice).getValue() * sellCount) + " coins?\n1) Yes\n2) No");
+                int again = Utility.tryInput(scan.nextLine(),2);
+                if (again == 1) {
+                    confirm = true;
+                }
             }
-            System.out.println("What would you like to sell?");
-            int choice = Utility.tryInput(scan.nextLine(),itemsOwned.size());
-            boolean confirm = false;
-            while (!confirm) {
-                System.out.println("How many would you like to sell? (0 - " + itemsOwned.get(choice).getOwned() + ")" );
-                int sellCount = Utility.tryInput(scan.nextLine(),itemsOwned.get(choice).getOwned());
-                System.out.println("Are you sure you want to sell " + sellCount + " " + itemsOwned.get(choice).getName() + " for " + (itemsOwned.get(choice).getValue() * sellCount) + " coins?");
-            }
-
         } else {
             System.out.println("You don't got things to sell");
         }
-
-
     }
 }

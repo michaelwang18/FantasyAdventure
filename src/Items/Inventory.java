@@ -7,7 +7,7 @@ public class Inventory {
     private ArrayList<Consumable> Handbag = new ArrayList<>();
 
     public Inventory(){
-        allItems = new Hashtable<>();
+        allItems = new Hashtable<Integer, Item>();
         try {
             int count = 0;
             File myFile = new File("src//itemList.csv");
