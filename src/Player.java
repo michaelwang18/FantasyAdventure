@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.Dictionary;
 
 public class Player extends Entity{
-    int coins;
-    int progression;
+    private int coins;
+    private int progression;
     private Equipment armour;
     private ArrayList<Consumable> Handbag = new ArrayList<>();
     private Inventory bag = new Inventory();
-    boolean alive;
+    private boolean alive;
 
 
     public Player(String name, int health, int attack, int defense, int speed, int coins){

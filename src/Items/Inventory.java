@@ -3,14 +3,14 @@ import java.io.IOException;
 import java.util.*;
 
 public class Inventory {
-    private Dictionary<Integer, Item> allItems;
+    private Dictionary<Integer, Item> allItems = new Hashtable<Integer, Item>();
     private ArrayList<Consumable> Handbag = new ArrayList<>();
 
     public Inventory(){
-        allItems = new Hashtable<Integer, Item>();
+
         try {
             int count = 0;
-            File myFile = new File("src//itemList.csv");
+            File myFile = new File("src/items/itemList.csv");
             Scanner fileScanner = new Scanner(myFile);
             //fileScanner.nextLine(); //Skips first line
             while (fileScanner.hasNext()) {
@@ -42,11 +42,13 @@ public class Inventory {
 
     }
 
+
     public int getAmount(int id){
-        return allItems.get(id).getOwned();
+        return getItem(id).getOwned();
     }
     public void add(int id, int amount){
         allItems.get(id).setOwned(getAmount(id) + amount);
+        System.out.println("You obtained " + amount + " " + getItem(id).getName() + "(s)");
     }
     
     public Dictionary<Integer, Item> getAllItems() {

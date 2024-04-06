@@ -12,11 +12,16 @@ public class Main {
         System.out.println("Hello world!");
         Inventory test = new Inventory();
         Player player =  new Player("Bobby",150,35,20,40,1);
-        player.getBag().add(3,1);
+        player.getBag().add(2,3);
+        player.getBag().add(5,1);
         Shop testshop = new Shop(player);
         testshop.sell();
+
+
+
+
         Battle test1 = new Battle(new Player("Bobby",150,35,20,40,1),new Entity("Gobby Boi",200,40,15,30));
-        test1.start();
+        //test1.start();
 
 
 
@@ -29,7 +34,7 @@ public class Main {
                 "\n2) Visit Stores" +
                 "\n3) Go Fish",options);
 
-        dude.start();
+        //dude.start();
 
 
 

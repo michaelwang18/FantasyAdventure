@@ -11,7 +11,7 @@ public class EntityList {
         Entity[] list = {direBoar()};
         return list[(int) (Math.random()*list.length)];
     }
-    public static Entity getSDMonster(){
+    public static Entity getSDMonster(){ //THESE ARE EXAMPLES
         Entity[] list = {direBoar()};
         return list[(int) (Math.random()*list.length)];
     }
