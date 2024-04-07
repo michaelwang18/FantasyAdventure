@@ -31,6 +31,17 @@ public class Utility {
         return num;
     }
 
+    public static String countDisplay(int have, int max){
+        String returnee = "";
+        for (int i = 0; i < have; i++){
+            returnee += "✦";
+         }
+        for (int i = have; i < max; i++){
+            returnee += "✧";
+        }
+        return returnee;
+    }
+
     public static String plural(String input, int number){
         if (!(1 == Math.abs(number))){
             return input + "s";

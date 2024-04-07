@@ -9,7 +9,7 @@ public class Player extends Entity{
     private int level;
     private Equipment armour;
     private Weapon sword;
-    private ArrayList<Consumable> Handbag = new ArrayList<>();
+    private ArrayList<Consumable> Handbag = new ArrayList<>(0);
     private Inventory bag = new Inventory();
     private boolean alive;
     private Scanner scan;
@@ -59,34 +59,34 @@ public class Player extends Entity{
         if (exp >= (10 + level * 2)){
             level++;
             exp -= (15 + level * 2);
-            System.out.println("You leveled up! \nAll base stats increased");
-            System.out.println(" " + getBaseHealth() + " -> " + (getBaseHealth() + 10));
+            System.out.println("You leveled up!" + Color.WHITE_BOLD_BRIGHT +"LEVEL " + (level-1) + " > " + level + "\nAll base stats increased" + Color.GREEN_BOLD_BRIGHT);
+            System.out.println("❤\uFE0F " + getBaseHealth() + " -> " + (getBaseHealth() + 10));
             setBaseHealth(getBaseHealth() + 10);
 
-            System.out.println(" " + getBaseHealth() + " -> " + (getBaseHealth() + 5));
+            System.out.println("\uD83D\uDDE1\uFE0F " + getBaseAttack() + " -> " + (getBaseAttack() + 5));
             setBaseAttack(getBaseAttack() + 5);
 
-            System.out.println(" " + getBaseHealth() + " -> " + (getBaseHealth() + 5));
+            System.out.println("\uD83D\uDC5F " + getBaseSpeed() + " -> " + (getBaseSpeed() + 5));
             setBaseSpeed(getBaseSpeed() + 5);
 
-            System.out.println(" " + getBaseDefense() + " -> " + (getBaseDefense()) + 5);
+            System.out.println("\uD83D\uDEE1\uFE0F " + getBaseDefense() + " -> " + (getBaseDefense() + 5));
             setBaseDefense(getBaseDefense() + 5);
-            System.out.println("\n1) (Attack UP)\n2) (Defense UP)\n3) (Health Up)\n4) (Speed Up)");
+            System.out.println(Color.RESET + "Your identity becomes better defined through... \n1) Strength(Attack UP)\n2) Resilience(Defense UP)\n3) Vitality(Health Up)\n4) Agility(Speed Up)" + Color.GREEN_BOLD_BRIGHT);
             int choice = Utility.tryInput(scan.nextLine(),4);
             if (choice == 1){
-                System.out.println(" " + getBaseHealth() + " -> " + (getBaseHealth() + 5));
+                System.out.println("\uD83D\uDDE1\uFE0F " + getBaseAttack() + " -> " + (getBaseAttack() + 5));
                 setBaseAttack(getBaseAttack() + 5);
             }
             if (choice == 2){
-                System.out.println(" " + getBaseDefense() + " -> " + (getBaseDefense()) + 5);
+                System.out.println("\uD83D\uDEE1\uFE0F " + getBaseDefense() + " -> " + (getBaseDefense() + 5));
                 setBaseDefense(getBaseDefense() + 5);
             }
             if (choice == 3){
-                System.out.println(" " + getBaseHealth() + " -> " + (getBaseHealth() + 10));
+                System.out.println("❤\uFE0F " + getBaseHealth() + " -> " + (getBaseHealth() + 10));
                 setBaseHealth(getBaseHealth() + 10);
             }
             if (choice == 4){
-                System.out.println(" " + getBaseHealth() + " -> " + (getBaseHealth() + 5));
+                System.out.println("\uD83D\uDC5F " + getBaseSpeed() + " -> " + (getBaseSpeed() + 5));
                 setBaseSpeed(getBaseSpeed() + 5);
             }
 

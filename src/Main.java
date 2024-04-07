@@ -3,13 +3,12 @@ public class Main {
 
 
 
+        Game game = new Game();
+        game.start();
 
 
 
-
-
-
-        System.out.println("Hello world!");
+        System.out.println(Utility.countDisplay(3,5));
         Inventory test = new Inventory();
         Player player =  new Player("Bobby",150,35,20,40,1);
         player.getBag().add(2,3);

@@ -34,7 +34,6 @@ public class Battle {
         actions.put(3, "block");
         actions.put(4, "parry");
         actions.put(5, "consume");
-        handbag = player.getHandbag();
         this.player = player;
         this.enemy = enemy;
 
@@ -43,6 +42,7 @@ public class Battle {
 
     private void initializeStats(){
         //PLAYER
+        handbag = player.getHandbag();
         playerHealth = player.getBaseHealth() + player.getArmour().getHealth();
         playerMaxHealth = playerHealth;
         playerAttack = player.getBaseAttack() + player.getArmour().getAttack();
@@ -64,25 +64,25 @@ public class Battle {
 
         initializeStats();
         System.out.println("BATTLE START");
-        handbag.add(new Consumable("Potion Ahh","Potion",10,.70,.1,.1,.1)); //TESTING;
+       // handbag.add(new Consumable("Potion Ahh","Potion",10,.70,.1,.1,.1)); //TESTING;
 
 
         for (int rounds = 1; playerHealth > 0 && enemyHealth > 0; rounds++){
             int usedEnergy = 0;
 
-            System.out.println("ROUND " + rounds + "\n--------------------------------------------------------------------------------");
+            System.out.println(Color.CYAN_BOLD_BRIGHT + "ROUND " + rounds + Color.PURPLE_BOLD_BRIGHT + "\n--------------------------------------------------------------------------------" + Color.RESET);
             restoreEnergy();
             enemyStack.clear();
             moveStack.clear();
             for (int bout = 0; bout < 3; bout++){
                 int maxChoice = 5;
-                String options = "\n1) Basic Attack (1 Cost)\n2) Critical Attack (2 Cost)\n3) Block (0 Cost)\n4) Parry (1 Cost)\n5) Use Item";
+                String options = Color.WHITE_BOLD_BRIGHT + "\n1) Basic Attack (1 Cost)\n2) Critical Attack (2 Cost)\n3) Block (0 Cost)\n4) Parry (1 Cost)\n5) Use Item" + Color.RESET;
                 if (!moveStack.isEmpty()){options += "\n6) UNDO"; maxChoice = 6;
                     System.out.println(moveStack + "\n--------------------------------------------------------------------------------");}
                     System.out.println(Utility.spaceout("Your  Health: " + playerHealth +"/" + playerMaxHealth,30) +Utility.healthBar(playerHealth, playerMaxHealth));
                     System.out.println(Utility.spaceout(enemy.getName() + " Health: " + enemyHealth +"/" + enemyMaxHealth,30) +Utility.healthBar(enemyHealth, enemyMaxHealth));
-                    System.out.println("--------------------------------------------------------------------------------\nAction " + (bout + 1) + " of " + 3);
-                    System.out.println("ENERGY: " + playerEnergy + " ENERGY USED: " + usedEnergy);
+                    System.out.println(Color.PURPLE_BOLD_BRIGHT + "--------------------------------------------------------------------------------\n" + Color.CYAN_BOLD_BRIGHT + "Action " + (bout + 1) + " of " + 3 + Color.RESET);
+                    System.out.println(Color.YELLOW_BOLD_BRIGHT + "Energy: " + Color.RESET + Utility.countDisplay(playerEnergy,5) );
                     System.out.println("What would you like to do?" + options);
                     int choice = Utility.tryInput(scan.nextLine(),maxChoice);
                     while (choice < 5 && playerEnergy < getCost(actions.get(choice))){
@@ -130,9 +130,11 @@ public class Battle {
             System.out.println("Defeated you faint and find yourself back at the Village");
 
         } else {
-            System.out.println("You defeated the " + enemy.getName() );
+            System.out.print("You defeated the " + enemy.getName() );
             if (enemy instanceof Monster) {
-                System.out.print(" and gained " + ((Monster)enemy).getExp() + " Experience Points");
+
+                System.out.println(" and gained " + ((Monster)enemy).getExp() + " Experience Points");
+                player.obtainExp(((Monster) enemy).getExp());
                 ((Monster) enemy).getDrops(player,(int)(Math.random()*3) + 1);
             }
         }
@@ -230,7 +232,7 @@ public class Battle {
         for (int bout =  0; bout < 3 && playerHealth > 0 && enemyHealth > 0; bout++){
             try {Thread.sleep(500);} catch (Exception e){System.out.println(e.toString());}
 
-            System.out.println("\nBOUT " + (bout+1) + "-------------------------------------------------------------------------");
+            System.out.println(Color.CYAN_BOLD_BRIGHT + "\nBOUT " + (bout+1) + "-------------------------------------------------------------------------" + Color.BLUE_BOLD_BRIGHT);
             String pMove = moveStack.getInternalList().get(bout);
             String eMove = enemyStack.getInternalList().get(bout);
             if (pMove.equals("attack")){ // YOUR ATTACK
@@ -248,7 +250,7 @@ public class Battle {
                         playerHealth -=  damageCalc(playerDefense,enemyAttack);
                         if (playerHealth > 0){
                             System.out.println("You hit the " + enemy.getName() + " back for " + (damageCalc(enemyDefense,playerAttack))+ " damage!");
-                            playerHealth -=  damageCalc(playerDefense,enemyAttack);
+                            enemyHealth -=  damageCalc(enemyDefense,playerAttack);
                         }
                     }
                     }
@@ -258,7 +260,7 @@ public class Battle {
                       System.out.println("You hit the " + enemy.getName() + " for " + (damageCalc(enemyDefense,playerAttack))+ " damage!");
                       enemyHealth -= (damageCalc(enemyDefense,playerAttack));
                     if (enemyHealth > 0) {
-                        System.out.println(enemy.getName() + " hits you back critically for " + damageCalc(playerDefense,enemyAttack * 3 / 2)+ " damage!");
+                        System.out.println("The" + enemy.getName() + " hits you back critically for " + damageCalc(playerDefense,enemyAttack * 3 / 2)+ " damage!");
                         playerHealth -= damageCalc(playerDefense,enemyAttack * 3 / 2);
                     }
                 } else {
@@ -332,9 +334,11 @@ public class Battle {
                 enemySpeed += enemy.getBaseSpeed() * potion.getSpeed();
             }
 
+            System.out.println(Color.RESET + Utility.spaceout( "Your  Health: " + playerHealth +"/" + playerMaxHealth,30) +Utility.healthBar(playerHealth, playerMaxHealth));
+            System.out.println(Utility.spaceout(enemy.getName() + " Health: " + enemyHealth +"/" + enemyMaxHealth,30) +Utility.healthBar(enemyHealth, enemyMaxHealth));
 
         } ///
-        System.out.println("-------------------------------------------------------------------------------\n\n\n");
+        System.out.println(Color.CYAN_BOLD_BRIGHT + "-------------------------------------------------------------------------------\n\n\n" + Color.RESET);
         try {Thread.sleep(750);} catch (Exception e){System.out.println(e.toString());}
     }
 

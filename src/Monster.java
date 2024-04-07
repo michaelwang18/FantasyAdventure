@@ -1,8 +1,8 @@
 import java.util.Dictionary;
 
 public class Monster extends Entity{
-    int[] drops;
-    int exp;
+    private int[] drops;
+    private int exp;
 
 
     public Monster (String name, int health, int attack, int defense, int speed, int[] drops, int experience){

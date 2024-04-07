@@ -11,13 +11,13 @@ public class Shop {
 
     public void menu(Player player) {
         String option = "";
-        while (!option.equals("l")) {
+        while (!option.equals("3")) {
             System.out.println("What do you wish to do?\n1) Buy\n2) Sell\n3) Leave");
-            option = scan.nextLine().toLowerCase();
-            if (!option.equals("1")) {
-                if (option.equals("2")) {
+            option = String.valueOf(Utility.tryInput(scan.nextLine(),3));
+            if (!option.equals("3")) {
+                if (option.equals("1")) {
                     buy();
-                } else if (option.equals("3")) {
+                } else if (option.equals("2")) {
                     sell(player);
                 } else {
                     System.out.println("This is not a valid option!");
