@@ -17,14 +17,13 @@ public class Game {
     public void start(){
 
         System.out.println("Welcome Game");
+        initilizeChoices();
         //We deal with this later
         //Create Intro "survey" and create player
 
         for (int day = 1; lives > 0; day++){
             System.out.println(Utility.color("Day " + day, Color.WHITE_BOLD_BRIGHT));
-            town.start();
-            
-
+            town.start(player);
 
 
         }
@@ -33,8 +32,9 @@ public class Game {
     }
 
     private void initilizeChoices(){
+
         Object[] storeOptions = {};
-        Object[] battleOptions = {new Battle(player,EntityList.getGPMonster()),new Battle(player,EntityList.getSDMonster()),new Battle(player,EntityList.getBTMonster())};
+        Object[] battleOptions = {new Battle(player,Monster.getArea1Monster()),new Battle(player,Monster.getArea2Monster()),new Battle(player,Monster.getArea2Monster()) };
         Object[] options = {new Dialogue("TownHunt","Where would you like to hunt!\n1) Great Plains \n2) Scorching Desert\n3) Bleak Tundras",battleOptions),
                 new Dialogue("Shop","What store would you like to visit?\n1) General Store\n2) Apothecary\n3) Blacksmith",storeOptions)}; //Add Fishing when richards done
         town = new Dialogue("TownStart","Your in town, what would you like to do? " +

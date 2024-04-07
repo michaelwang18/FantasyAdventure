@@ -31,4 +31,27 @@ public class Monster extends Entity{
 
     }
 
+    public static Entity direBoar(){
+        int[] drops = {6,6,8,8,7};
+        return new Monster("Dire Boar",70,30,25,45,drops,50);
+    } //example
+
+    public static Entity getArea1Monster(){
+        Entity[] list = {direBoar()};
+        return list[(int) (Math.random()*list.length)];
+    }
+    public static Entity getArea2Monster(){ //THESE ARE EXAMPLES
+        Entity[] list = {direBoar()};
+        return list[(int) (Math.random()*list.length)];
+    }
+    public static Entity getArea3Monster(){
+        Entity[] list = {direBoar()};
+        return list[(int) (Math.random()*list.length)];
+    }
+
+
+
+
+
+
 }

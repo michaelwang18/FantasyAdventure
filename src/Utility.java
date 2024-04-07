@@ -10,15 +10,11 @@ public class Utility {
         return res;
     }
 
-    public static boolean chance(int numerator, int denominator){
+    public static boolean chance(int numerator, int denominator) {
         double randNum = Math.random();
-        double rate = (double) numerator/denominator;
-        if (randNum <= rate){
-            return true;
-        }
-        return false;
+        double rate = ((double) numerator) / denominator;
+        return randNum <= rate;
     }
-
     public static int tryInput(String input, int max){ // Learnt From W3Schools https://www.w3schools.com/java/java_try_catch.asp
         int num = 0;
         Scanner scan = new Scanner(System.in);

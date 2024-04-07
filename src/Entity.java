@@ -1,6 +1,6 @@
 public class Entity {
 
-    String name;
+    private String name;
     private int baseHealth;
     private int baseAttack;
     private int baseDefense;

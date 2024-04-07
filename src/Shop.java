@@ -1,28 +1,24 @@
 import java.util.*;
 
 public class Shop {
-    Scanner scan = new Scanner(System.in);
-    ArrayList<String> materials = new ArrayList<>();
-    ArrayList<String> consumables = new ArrayList<>();
+    static Scanner scan = new Scanner(System.in);
+    static ArrayList<String> materials = new ArrayList<>();
+    static ArrayList<String> consumables = new ArrayList<>();
 
-    ArrayList<Consumable> potions = new ArrayList<>();
-    Player p1;
+    static ArrayList<Consumable> potions = new ArrayList<>();
 
-    public Shop(Player p1) {
-        this.p1 = p1;
-        //menu();
-    }
+    public Shop(Player p1) {}
 
-    public void menu() {
+    public void menu(Player player) {
         String option = "";
         while (!option.equals("l")) {
-            System.out.println("What do you wish to do?\n(B)uy\n(S)ell\n(L)eave");
+            System.out.println("What do you wish to do?\n1) Buy\n2) Sell\n3) Leave");
             option = scan.nextLine().toLowerCase();
-            if (!option.equals("l")) {
-                if (option.equals("b")) {
+            if (!option.equals("1")) {
+                if (option.equals("2")) {
                     buy();
-                } else if (option.equals("s")) {
-                    sell();
+                } else if (option.equals("3")) {
+                    sell(player);
                 } else {
                     System.out.println("This is not a valid option!");
                 }
@@ -39,7 +35,7 @@ public class Shop {
         System.out.println("This isn't even one of the options. You sure you should be traveling the road? I think it's time to head back home.");
     }
 
-    public void sell() {
+    public void sell(Player p1) {
         Inventory bag = p1.getBag();
         boolean confirm = false;
         boolean hasSell = false;

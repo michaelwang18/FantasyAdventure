@@ -3,8 +3,8 @@ public class EntityList {
     private EntityList(){};
 
     public static Entity direBoar(){
-        int[] drops = {1,2,3,3};
-        return new Monster("Dire Boar",70,30,25,50,drops,1);
+        int[] drops = {6,6,7,8};
+        return new Monster("Dire Boar",70,30,25,50,drops,30);
     } //example
 
     public static Entity getGPMonster(){
