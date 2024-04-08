@@ -5,9 +5,9 @@ import java.util.Spliterator;
 
 public class Fishing {
 
-    private Player player;
+    private final Player player;
     private Space[][] board;
-    private Scanner scan;
+    private final Scanner scan;
     private int userMoves = 0;
     private int fishCount = 0;
     private int maxFish = 0;
@@ -127,7 +127,6 @@ public class Fishing {
         int[] pool2 = {41,41,40,40,42};
         int[] pool3 = {43,43,44,44,45,47,46,};
         lootPool.put(1,pool1); lootPool.put(2,pool2); lootPool.put(3,pool3);
-        System.out.println("est");
         for (int i = 0; i < fishCount; i++){
             int[] lootPoolPick = lootPool.get(level);
             int chosenLoot = lootPoolPick[(int)(Math.random() * lootPoolPick.length)];

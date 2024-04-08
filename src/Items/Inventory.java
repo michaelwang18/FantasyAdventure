@@ -51,7 +51,7 @@ public class Inventory {
     }
     public void add(int id, int amount){
         allItems.get(id).setOwned(getAmount(id) + amount);
-        System.out.println("You obtained " + amount + " " + getItem(id).getName() + "(s)");
+        System.out.println( Color.WHITE_BOLD_BRIGHT + "You obtained " + amount + " " + Color.CYAN_BOLD_BRIGHT + getItem(id).getName() + "(s)" + Color.WHITE_BOLD_BRIGHT + " (Owned: " + allItems.get(id).getOwned() + ")" + Color.RESET);
     }
 
     public void addPotions(Consumable potion) {
