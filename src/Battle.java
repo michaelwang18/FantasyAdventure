@@ -78,7 +78,7 @@ public class Battle {
                 int maxChoice = 5;
                 String options = Color.WHITE_BOLD_BRIGHT + "\n1) Basic Attack (1 Cost)\n2) Critical Attack (2 Cost)\n3) Block (0 Cost)\n4) Parry (1 Cost)\n5) Use Item" + Color.RESET;
                 if (!moveStack.isEmpty()){options += "\n6) UNDO"; maxChoice = 6;
-                    System.out.println(moveStack + "\n--------------------------------------------------------------------------------");}
+                    System.out.println(Color.GREEN_BOLD_BRIGHT + moveStack + Color.PURPLE_BOLD_BRIGHT + "\n--------------------------------------------------------------------------------" + Color.RESET);}
                     System.out.println(Utility.spaceout("Your  Health: " + playerHealth +"/" + playerMaxHealth,30) +Utility.healthBar(playerHealth, playerMaxHealth));
                     System.out.println(Utility.spaceout(enemy.getName() + " Health: " + enemyHealth +"/" + enemyMaxHealth,30) +Utility.healthBar(enemyHealth, enemyMaxHealth));
                     System.out.println(Color.PURPLE_BOLD_BRIGHT + "--------------------------------------------------------------------------------\n" + Color.CYAN_BOLD_BRIGHT + "Action " + (bout + 1) + " of " + 3 + Color.RESET);
@@ -230,6 +230,8 @@ public class Battle {
 
     private void useStacks(){
         for (int bout =  0; bout < 3 && playerHealth > 0 && enemyHealth > 0; bout++){
+            int beforePlayer = playerHealth;
+            int beforeEnemy = enemyHealth;
             try {Thread.sleep(500);} catch (Exception e){System.out.println(e.toString());}
 
             System.out.println(Color.CYAN_BOLD_BRIGHT + "\nBOUT " + (bout+1) + "-------------------------------------------------------------------------" + Color.BLUE_BOLD_BRIGHT);
@@ -334,9 +336,10 @@ public class Battle {
                 enemySpeed += enemy.getBaseSpeed() * potion.getSpeed();
             }
 
-            System.out.println(Color.RESET + Utility.spaceout( "Your  Health: " + playerHealth +"/" + playerMaxHealth,30) +Utility.healthBar(playerHealth, playerMaxHealth));
-            System.out.println(Utility.spaceout(enemy.getName() + " Health: " + enemyHealth +"/" + enemyMaxHealth,30) +Utility.healthBar(enemyHealth, enemyMaxHealth));
-
+            if (beforePlayer != playerHealth || enemyHealth != beforeEnemy) {
+                System.out.println(Color.RESET + Utility.spaceout("Your  Health: " + playerHealth + "/" + playerMaxHealth, 30) + Utility.healthBar(playerHealth, playerMaxHealth));
+                System.out.println(Utility.spaceout(enemy.getName() + " Health: " + enemyHealth + "/" + enemyMaxHealth, 30) + Utility.healthBar(enemyHealth, enemyMaxHealth));
+            }
         } ///
         System.out.println(Color.CYAN_BOLD_BRIGHT + "-------------------------------------------------------------------------------\n\n\n" + Color.RESET);
         try {Thread.sleep(750);} catch (Exception e){System.out.println(e.toString());}

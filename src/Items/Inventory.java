@@ -51,9 +51,7 @@ public class Inventory {
     }
     public void add(int id, int amount){
         allItems.get(id).setOwned(getAmount(id) + amount);
-        if (amount <= 0){
-            System.out.println("You obtained " + amount + " " + getItem(id).getName() + "(s)");
-        }
+        System.out.println("You obtained " + amount + " " + getItem(id).getName() + "(s)");
     }
 
     public void addPotions(Consumable potion) {

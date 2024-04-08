@@ -44,7 +44,7 @@ public class Apothecary  {
     private Consumable potionMaking() {
         String symbolV = null;
         String nameV = null;
-        int valueV = (int) ((Math.random() * 10) + 1);
+        int valueV = 10;
         int attackV = (int) ((Math.random() * 75) + 26);
         int defenseV = (int) ((Math.random() * 75) + 26);
         int healthV = (int) ((Math.random() * 75) + 26);
@@ -69,7 +69,7 @@ public class Apothecary  {
             nameV = "Stat Boost Potion";
         }
 
-        return new Consumable(nameV, symbolV, valueV, attackV, defenseV, healthV, speedV);
+        return new Consumable(nameV, symbolV, valueV/100, attackV, defenseV, healthV, speedV);
     }
 
     private String determineTypeOfPotion(int attackV, int defenseV, int healthV, int speedV) {

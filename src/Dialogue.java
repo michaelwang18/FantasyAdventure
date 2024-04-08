@@ -21,6 +21,7 @@ public class Dialogue {
         if (options[value] instanceof Dialogue){((Dialogue) options[value]).start(player);}
         if (options[value] instanceof Shop){((Shop) options[value]).menu(player);}
         if (options[value] instanceof Battle){((Battle) options[value]).start();}
+        if (options[value] instanceof Fishing){((Fishing) options[value]).play();}
         //Fishing
 
 
