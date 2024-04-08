@@ -53,6 +53,10 @@ public class Player extends Entity{
     public ArrayList<Consumable> getHandbag() {
         return Handbag;
     }
+    
+    public void setHandbag(Consumable comsumable) {
+        Handbag.add(comsumable);
+    }
 
     public void obtainExp(int experience){
         exp += experience;

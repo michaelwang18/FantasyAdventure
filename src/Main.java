@@ -15,6 +15,9 @@ public class Main {
         player.getBag().add(5,1);
         Shop testshop = new Shop(player);
        // testshop.sell();
+        Apothecary testpot = new Apothecary(player);
+        testpot.speech(player);
+
 
 
 

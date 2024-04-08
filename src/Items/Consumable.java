@@ -44,7 +44,4 @@ public class Consumable extends Item {
         String[] split = mesh.split(",");
         return new Consumable(split[0],split[1],Integer.parseInt(split[2]),Double.parseDouble(split[3]),Double.parseDouble(split[4]),Double.parseDouble(split[5]),Double.parseDouble(split[6]));
     }
-
-
-
 }
