@@ -51,7 +51,9 @@ public class Inventory {
     }
     public void add(int id, int amount){
         allItems.get(id).setOwned(getAmount(id) + amount);
-        System.out.println("You obtained " + amount + " " + getItem(id).getName() + "(s)");
+        if (amount <= 0){
+            System.out.println("You obtained " + amount + " " + getItem(id).getName() + "(s)");
+        }
     }
     
     public Dictionary<Integer, Item> getAllItems() {
