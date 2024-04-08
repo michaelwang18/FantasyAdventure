@@ -53,6 +53,10 @@ public class Inventory {
         allItems.get(id).setOwned(getAmount(id) + amount);
         System.out.println("You obtained " + amount + " " + getItem(id).getName() + "(s)");
     }
+
+    public void addPotions(Consumable potion) {
+        Handbag.add(potion);
+    }
     
     public Dictionary<Integer, Item> getAllItems() {
         return allItems;
