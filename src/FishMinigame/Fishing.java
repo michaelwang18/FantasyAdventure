@@ -12,7 +12,6 @@ public class Fishing {
     private int fishCount = 0;
     private int maxFish = 0;
     int level = 1;
-    Fish fish;
 
 
     public Fishing(Player player) {
@@ -133,7 +132,6 @@ public class Fishing {
             int[] lootPoolPick = lootPool.get(level);
             int chosenLoot = lootPoolPick[(int)(Math.random() * lootPoolPick.length)];
             player.getBag().add(chosenLoot,1);
-            System.out.println("fml");
         }
 
     }

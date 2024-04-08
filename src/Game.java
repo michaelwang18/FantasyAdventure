@@ -29,7 +29,7 @@ public class Game {
         }
          player =  new Player(name,150,35,20,30,0);
         if (player == null){
-            System.out.println("Test");
+
         }
         initilizeChoices();
         //We deal with this later
@@ -47,7 +47,6 @@ public class Game {
 
 
     private void initilizeChoices(){
-        System.out.println(player.getName());
         Object[] storeChoices = {new Shop(player),new Shop(player), new Shop(player)};
         Battle[] huntChoices = {new Battle(player,Monster.getArea1Monster()),new Battle(player,Monster.getArea2Monster()),new Battle(player,Monster.getArea3Monster()) };
         Dialogue shop = new Dialogue("Shop","What store would you like to visit?\n1) General Store\n2) Apothecary\n3) Blacksmith",storeChoices);
