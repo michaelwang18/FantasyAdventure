@@ -3,38 +3,59 @@ import java.util.Scanner;
 
 public class Apothecary  {
 
+    Player p1;
+
     static Scanner scan = new Scanner(System.in);
+    Consumable potion1;
+    Consumable potion2;
+    Consumable potion3;
 
     public Apothecary(Player p1) {
-        speech(p1);
+        this.p1 = p1;
     }
 
 
-    public void speech(Player p1) {
-        Consumable potion1 = potionMaking();
-        Consumable potion2 = potionMaking();
-        Consumable potion3 = potionMaking();
+    public void speech() {
+         potion1 = potionMaking();
+         potion2 = potionMaking();
+         potion3 = potionMaking();
         Consumable chosenPotion;
         int choice = 0;
 
         while (choice != 2) {
-            System.out.print("1) First Potion " + potion1 + "\n2) Second Potion " + potion2 + "\n3) Third Potion " + potion3 + "\nWhich potion would you like to buy: ");
-            int potion = Utility.tryInput(scan.nextLine(), 3);
+            System.out.println("All the potions cost 50 coins, and 20 to refresh the selection ");
+            System.out.println("1) " + potion1 + "\n2)  " + potion2 + "\n3)  " + potion3 + "\n4) Refresh Potions (20 coins)\nWhich potion would you like to buy: ");
+            int potion = Utility.tryInput(scan.nextLine(), 4);
+            chosenPotion = potion1;
+
 
             if (potion == 1) {
                 chosenPotion = potion1;
             } else if (potion == 2) {
                 chosenPotion = potion2;
-            } else {
+            } else if (potion == 3){
                 chosenPotion = potion3;
+            } else if (potion == 4){
+                if (p1.getCoins() >= 20){
+                    System.out.println("Take a gander at these new potions");
+                    potion1 = potionMaking();
+                    potion2 = potionMaking();
+                    potion3 = potionMaking();
+                } else {
+                    System.out.println("You don't got enough coins, get outta here ");
+                    choice = 2;
+                }
+
+
+                 chosenPotion = potion1;
             }
 
-            if (chosenPotion.getValue() > p1.getCoins()) {
+            if (potion != 4 && chosenPotion.getValue() > 50) {
                 System.out.print("You don't got enough coins. Would you like to see if you have enough for a different potion?\n1) Yes\n2) No");
                 choice = Utility.tryInput(scan.nextLine(), 2);
-            } else {
+            } else if (potion != 4){
                 p1.setCoins(p1.getCoins() - chosenPotion.getValue());
-                p1.setHandbag(chosenPotion);
+                p1.getHandbag().add(chosenPotion);
                 System.out.println("You have bought a " + chosenPotion);
                 choice = 2;
             }
@@ -45,10 +66,10 @@ public class Apothecary  {
         String symbolV = null;
         String nameV = null;
         int valueV = 10;
-        int attackV = (int) ((Math.random() * 75) + 26);
-        int defenseV = (int) ((Math.random() * 75) + 26);
-        int healthV = (int) ((Math.random() * 75) + 26);
-        int speedV = (int) ((Math.random() * 75) + 26);
+        double attackV = ((int)((Math.random() * 75) + 0)) /100.0;
+        double defenseV =  ((int)((Math.random() * 75) + 0)) /100.0;
+        double healthV = ((int)((Math.random() * 75) + 0)) /100.0;
+        double speedV = ((int)((Math.random() * 75) + 0)) /100.0;
 
         String type = determineTypeOfPotion(attackV, defenseV, healthV, speedV);
 
@@ -69,10 +90,10 @@ public class Apothecary  {
             nameV = "Stat Boost Potion";
         }
 
-        return new Consumable(nameV, symbolV, valueV/100, attackV, defenseV, healthV, speedV);
+        return new Consumable(nameV, symbolV, 50, attackV, defenseV, healthV, speedV);
     }
 
-    private String determineTypeOfPotion(int attackV, int defenseV, int healthV, int speedV) {
+    private String determineTypeOfPotion(double attackV, double defenseV, double healthV, double speedV) {
         if (attackV > defenseV && attackV > healthV && attackV > speedV) {
             return "Attack";
         } else if (defenseV > attackV && defenseV > healthV && defenseV > speedV) {

@@ -16,7 +16,7 @@ public class Main {
         Shop testshop = new Shop(player);
        // testshop.sell();
         Apothecary testpot = new Apothecary(player);
-        testpot.speech(player);
+        testpot.speech();
 
 
 

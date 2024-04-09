@@ -47,10 +47,10 @@ public class Game {
 
 
     private void initilizeChoices(){
-        Object[] storeChoices = {new Shop(player),new Shop(player), new Shop(player)};
+        Object[] storeChoices = {new Shop(player),new Apothecary(player), new Blacksmith(player)};
         Battle[] huntChoices = {new Battle(player,Monster.getArea1Monster()),new Battle(player,Monster.getArea2Monster()),new Battle(player,Monster.getArea3Monster()) };
         Dialogue shop = new Dialogue("Shop","What store would you like to visit?\n1) General Store\n2) Apothecary\n3) Blacksmith",storeChoices);
-        Dialogue hunt = new Dialogue("TownHunt","Where would you like to hunt!\n1) Great Plains \n2) Scorching Desert\n3) Bleak Tundras",huntChoices);
+        Dialogue hunt = new Dialogue("TownHunt","Where would you like to hunt!\n1) Great Plains \n2) Mystic Marshes\n3) Abyss Depths",huntChoices);
 
         Object[] options = {hunt,shop,new Fishing(player)}; //Add Fishing when richards done
         town = new Dialogue("TownStart","You're in town, what would you like to do? " +

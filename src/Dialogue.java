@@ -22,14 +22,8 @@ public class Dialogue {
         if (options[value] instanceof Shop){((Shop) options[value]).menu(player);}
         if (options[value] instanceof Battle){((Battle) options[value]).start();}
         if (options[value] instanceof Fishing){((Fishing) options[value]).play();}
-        //Fishing
-
-
-
-
-        //AND EVEN MORE SHIT
-
-
+        if (options[value] instanceof Apothecary){((Apothecary) options[value]).speech();}
+        if (options[value] instanceof Blacksmith){((Blacksmith) options[value]).craftSet();}
 
 
 

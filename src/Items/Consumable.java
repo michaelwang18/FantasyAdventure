@@ -33,7 +33,7 @@ public class Consumable extends Item {
 
     @Override
     public String toString() {
-        return super.toString() + "Attack: " + attack  + "Defense: " + defense  + "Health: " + health  + "Speed: " + speed ;
+        return " Attack: " + attack  + "Defense: " + defense  + "Health: " + health  + "Speed: " + speed ;
     }
 
     public String encode() {

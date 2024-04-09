@@ -263,11 +263,11 @@ public class Battle {
                       enemyHealth -= (damageCalc(enemyDefense,playerAttack));
                     if (enemyHealth > 0) {
                         System.out.println("The" + enemy.getName() + " hits you back critically for " + damageCalc(playerDefense,enemyAttack * 3 / 2)+ " damage!");
-                        playerHealth -= damageCalc(playerDefense,enemyAttack * 3 / 2);
+                        playerHealth -= damageCalc(playerDefense/2,enemyAttack * 3 / 2);
                     }
                 } else {
                     System.out.println(enemy.getName() + " hits you critically for " + damageCalc(playerDefense,enemyAttack * 2 / 3)+ " damage!");
-                    playerHealth -= damageCalc(playerDefense,enemyAttack * 3 / 2);
+                    playerHealth -= damageCalc(playerDefense/2,enemyAttack * 3 / 2);
                     if (playerHealth > 0){
                         System.out.println("Dazed, you weren't able to attack back" ); //MAYBE daze so you dont attack back
                     }
@@ -280,32 +280,32 @@ public class Battle {
                 if (eMove.equals("parry")){System.out.println(enemy.getName() + " anticipated an attack, taking a toll on their energy...\nEnemy Energy -1"); enemyEnergy--;}
                 if (eMove.equals("critical")){
                     System.out.println("The " + enemy.getName() + " strikes through your block, dealing " + damageCalc(playerDefense,enemyAttack*3/2) + " damage!");
-                    playerHealth -=  damageCalc(playerDefense,enemyAttack*3/2);
+                    playerHealth -=  damageCalc(playerDefense/2,enemyAttack*3/2);
                 }
             } else if (pMove.equals("critical")){
                 if (eMove.equals("block")){System.out.println("You crush through their defense, dealing " + damageCalc(enemyDefense,playerAttack*3/2) + " damage");
-                enemyHealth -= damageCalc(enemyDefense,playerAttack*3/2);}
+                enemyHealth -= damageCalc(enemyDefense/2,playerAttack*3/2);}
                 else if (eMove.equals("attack")){ if (playerSpeed >= enemySpeed){
                     System.out.println("You critically hit the " + enemy.getName() + " for " + (damageCalc(enemyDefense,playerAttack * 3/2))+ " damage!");
-                    enemyHealth -= damageCalc(enemyDefense,playerAttack*3/2);
+                    enemyHealth -= damageCalc(enemyDefense/2,playerAttack*3/2);
                     System.out.println("Dazed, the " + enemy.getName() + " was unable to retaliate");
                 } else {
                     System.out.println(enemy.getName() + " hits you for " + damageCalc(playerDefense,enemyAttack)+ " damage!");
                     playerHealth -= damageCalc(playerDefense,enemyAttack);
                     if (playerHealth > 0){
                         System.out.println("You critically hit the " + enemy.getName() + "  for " + (damageCalc(enemyDefense,playerAttack * 3/2))+ " damage!");
-                        enemyHealth -= (damageCalc(enemyDefense,playerAttack * 3/2));
+                        enemyHealth -= (damageCalc(enemyDefense/2,playerAttack * 3/2));
                     }
                 }}
                 if (eMove.equals("parry")){System.out.println( enemy.getName() + " parried your attack, catching you off guard.\nYou lose 1 energy"); playerEnergy--;}
                 if (eMove.equals("critical")){
                     if (playerSpeed >= enemySpeed){
                         System.out.println("You critically hit the " + enemy.getName() + " for " + (damageCalc(enemyDefense,playerAttack * 3/2))+ " damage!");
-                        enemyHealth -= (damageCalc(enemyDefense,playerAttack * 3/2));
+                        enemyHealth -= (damageCalc(enemyDefense/2,playerAttack * 3/2));
                         System.out.println("Dazed, the " + enemy.getName() + " was unable to retaliate");
                     } else {
                         System.out.println(enemy.getName() + " hits you critically for " + damageCalc(playerDefense,enemyAttack * 3 / 2)+ " damage!");
-                        playerHealth -= damageCalc(playerDefense,enemyAttack * 3 / 2);
+                        playerHealth -= damageCalc(playerDefense/2,enemyAttack * 3 / 2);
                         if (playerHealth > 0){
                             System.out.println("Dazed, you weren't able to attack back" );
                         }
