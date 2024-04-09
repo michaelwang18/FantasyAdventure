@@ -158,6 +158,9 @@ public class Blacksmith {
                 case "7":
                     printPageSeven();
                     break;
+                case "q":
+                    setNum = "q";
+                    break;
                 default:
                     System.out.println("Invalid option!");
                     break;
