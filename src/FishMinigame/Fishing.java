@@ -41,7 +41,7 @@ public class Fishing {
                 }
             }
         }
-        board[0][(board[0].length / 2) - 1] = new Space("\uD83E\uDE9D");
+        board[0][(board[0].length / 2) - 1] = new Space("\uD83C\uDFA3");
         for (int i = 0; i < fishCount.get(level); i++) {
             int randX = ((int) (Math.random() * board.length - 1)) + 1;
             int randY = ((int) (Math.random() * board[0].length - 1)) + 1;
@@ -78,7 +78,7 @@ public class Fishing {
                     System.out.println("You caught a fish!");
                     fishCount++;
                 }
-                board[xCoord - 1][yCoord] = new Space("\uD83E\uDE9D");
+                board[xCoord - 1][yCoord] = new Space("\uD83C\uDFA3");
                 board[xCoord][yCoord] = new Space("\uD83D\uDFE6");
                 xCoord--;
                 userMoves++;
@@ -87,7 +87,7 @@ public class Fishing {
                     System.out.println("You caught a fish!");
                     fishCount++;
                 }
-                board[xCoord][yCoord - 2] = new Space("\uD83E\uDE9D");
+                board[xCoord][yCoord - 2] = new Space("\uD83C\uDFA3");
                 board[xCoord][yCoord] = new Space("\uD83D\uDFE6");
                 yCoord-=2;
                 userMoves++;
@@ -96,7 +96,7 @@ public class Fishing {
                     System.out.println("You caught a fish!");
                     fishCount++;
                 }
-                board[xCoord + 1][yCoord] = new Space("\uD83E\uDE9D");
+                board[xCoord + 1][yCoord] = new Space("\uD83C\uDFA3");
                 board[xCoord][yCoord] = new Space("\uD83D\uDFE6");
                 xCoord++;
                 userMoves++;
@@ -105,7 +105,7 @@ public class Fishing {
                     System.out.println("You caught a fish!");
                     fishCount++;
                 }
-                board[xCoord][yCoord  + 2] = new Space("\uD83E\uDE9D");
+                board[xCoord][yCoord  + 2] = new Space("\uD83C\uDFA3");
                 board[xCoord][yCoord] = new Space("\uD83D\uDFE6");
                 yCoord+=2;
                 userMoves++;
