@@ -20,11 +20,6 @@ public class Fishing {
     }
 
     private void setupBoard() {
-        Treasure t1 = new Treasure("\uD83C\uDF0A");
-        Treasure t2 = new Treasure("\uD83C\uDF0A");
-        Treasure t3 = new Treasure("\uD83C\uDF0A");
-        Treasure t4 = new Treasure("\uD83C\uDF0A");
-        Treasure[] treasureList = {t1, t2, t3, t4};
         System.out.println("Where do you wish to Fish?\n1) Forest Pond\n2) Lake Pier\n3) Ocean" );
         level = Utility.tryInput(scan.nextLine(),3);
         Dictionary<Integer,Integer> fishCount = new Hashtable<>();

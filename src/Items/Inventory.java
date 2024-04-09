@@ -26,11 +26,7 @@ public class Inventory {
                     int defense = Integer.parseInt(splitData[4]);
                     int health = Integer.parseInt(splitData[5]);
                     int speed = Integer.parseInt(splitData[6]);
-                    if (splitData.length > 7){
-                        item = new Weapon(name,symbol,value,attack,defense,health,speed);
-                    } else {
-                        item = new Equipment(name,symbol,value,attack,defense,health,speed);
-                    }
+                    item = new Equipment(name,symbol,value,attack,defense,health,speed);
                 } else {
                      item = new Material(name, symbol,value);
                 }

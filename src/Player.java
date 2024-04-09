@@ -8,7 +8,6 @@ public class Player extends Entity{
     private int exp;
     private int level;
     private Equipment armour;
-    private Weapon sword;
     private ArrayList<Consumable> Handbag = new ArrayList<>(0);
     private Inventory bag = new Inventory();
     private boolean alive;
@@ -60,9 +59,9 @@ public class Player extends Entity{
 
     public void obtainExp(int experience){
         exp += experience;
-        if (exp >= (10 + level * 2)){
+        if (exp >= (15 + level * 5)){
             level++;
-            exp -= (15 + level * 2);
+            exp -= (15 + level * 5);
             System.out.println("You leveled up!" + Color.WHITE_BOLD_BRIGHT +"LEVEL " + (level-1) + " > " + level + "\nAll base stats increased" + Color.GREEN_BOLD_BRIGHT);
             System.out.println("❤\uFE0F " + getBaseHealth() + " -> " + (getBaseHealth() + 10));
             setBaseHealth(getBaseHealth() + 10);
