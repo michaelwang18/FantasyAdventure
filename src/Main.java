@@ -29,7 +29,7 @@ public class Main {
 
         Object[] storeOptions = {};
         Object[] battleOptions = {new Battle(player,EntityList.getGPMonster()),new Battle(player,EntityList.getSDMonster()),new Battle(player,EntityList.getBTMonster())};
-        Object[] options = {new Dialogue("TownHunt","Where would you like to hunt!\n1) Great Plains \n2) Scorching Desert\n3) Bleak Tundras",battleOptions),
+        Object[] options = {new Dialogue("TownHunt","Where would you like to hunt!\n1) Great 1 \n2) Scorching Desert\n3) Bleak Tundras",battleOptions),
                 new Dialogue("Shop","What store would you like to visit?\n1) General Store\n2) Apothecary\n3) Blacksmith",storeOptions)}; //Add Fishing when richards done
         Dialogue dude = new Dialogue("TownStart","Your in town, what would you like to do? " +
                 "\n1) Go Hunt" +

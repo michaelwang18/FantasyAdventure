@@ -63,7 +63,7 @@ public class Shop {
                 System.out.println("What would you like to sell? [You have " + p1.getCoins() + " \uD83E\uDE99] \nx) to exit");
                 String select = scan.nextLine();
                 if (select.toLowerCase().equals("x")) {confirm = true;} else {
-                    int choice = Utility.tryInput(scan.nextLine(), itemsOwned.size());
+                    int choice = Integer.parseInt(select);
                     System.out.println("How many would you like to sell? (1 - " + itemsOwned.get(choice).getOwned() + ")");
                     int sellCount = Utility.tryInput(scan.nextLine(), itemsOwned.get(choice).getOwned());
                     System.out.println("Are you sure you want to sell " + sellCount + " " + itemsOwned.get(choice).getName() + " for " + (itemsOwned.get(choice).getValue() * sellCount) + " coins?\n1) Yes\n2) No");
@@ -75,8 +75,9 @@ public class Shop {
                         for (int i = 1; i < bag.getAllItems().size(); i++) {
                             if (bag.getItem(i).getOwned() > 0) {
                                 hasSell = true;
+                                System.out.println("You now have " + p1.getCoins() + " \uD83E\uDE99!");
                             }
-                            System.out.println("You now have " + p1.getCoins() + " \uD83E\uDE99!");
+
                         }
                         if (hasSell) {
                             System.out.println("Would you like to continue selling?\n1)Yes\n2)No");
